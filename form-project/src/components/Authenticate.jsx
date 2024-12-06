@@ -4,6 +4,7 @@ const Authenticate = ({ token, setToken }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [signUp, setSignUp] = useState(false);
+  const [data, setData] = useState("");
   function handleClick() {
     async function authenticate() {
       try {
@@ -18,6 +19,7 @@ const Authenticate = ({ token, setToken }) => {
           }
         );
         const data = await response.json();
+        setData(data);
         console.log(data);
         if (data.success) {
           setAuthenticated(true);
@@ -42,7 +44,8 @@ const Authenticate = ({ token, setToken }) => {
         <>
           {authenticated ? (
             <div className="authenticated-msg">
-              <h2>You're Authenticated!!</h2>
+              <h2>{data.message}</h2>
+              <h3>Welcome {data.data.username}</h3>
               <button onClick={handleBackSignUpbtn}>Back to SignUp</button>
             </div>
           ) : (

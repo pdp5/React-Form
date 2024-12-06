@@ -54,3 +54,6 @@ body {
 .authenticated-msg button {
   font-size: large;
 }
+.authenticated-msg h3 {
+  color: green;
+}
